@@ -23,3 +23,12 @@ def bananas(s) -> set:
         if compared_item == word_sample:
             result.add("".join(pattern))
     return result
+
+
+def main():
+    string_item = input('Введите, пожалуйста, строку: ')
+    print(bananas(string_item))
+
+
+if __name__ == "__main__":
+    main()
