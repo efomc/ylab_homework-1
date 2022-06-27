@@ -22,7 +22,9 @@ def count_find_num(primesL, limit):
         additional_positions = ceil(log(additional_part, min_prime))
         additional_list = []
         for stage in range(1, additional_positions):
-            additional_list += list(combinations_with_replacement(primesL, stage))
+            additional_list += list(
+                combinations_with_replacement(primesL, stage)
+            )
         additional_list = (
             [primesL]
             + [primesL + list(item) for item in additional_list]
