@@ -9,3 +9,12 @@ def zeros(n):
     else:
         zeros_list = []
     return sum(zeros_list)
+
+
+def main():
+    number = int(input('Введите, пожалуйста, целое число: '))
+    print(zeros(number))
+
+
+if __name__ == "__main__":
+    main()
