@@ -14,3 +14,5 @@ def domain_name(url):
                 )
             ):
                 return element
+url = input('Введите, пожалуйста, url адрес: ')
+print(domain_name(url))
