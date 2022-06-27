@@ -2,6 +2,16 @@ from math import log, ceil, prod
 from itertools import combinations_with_replacement
 
 
+ASSERT_LIST = [
+    {"primesL": [2, 5, 7], "limit": 500, "assert_result": [5, 490]},
+    {"primesL": [2, 3], "limit": 200, "assert_result": [13, 192]},
+    {"primesL": [2, 5], "limit": 200, "assert_result": [8, 200]},
+    {"primesL": [2, 3, 5], "limit": 500, "assert_result": [12, 480]},
+    {"primesL": [2, 3, 5], "limit": 1000, "assert_result": [19, 960]},
+    {"primesL": [2, 3, 47], "limit": 200, "assert_result": []},
+]
+
+
 def count_find_num(primesL, limit):
     result = []
     result_dict = dict()
@@ -24,3 +34,15 @@ def count_find_num(primesL, limit):
     if result_dict:
         result = [len(result_dict), max(result_dict)]
     return result
+
+
+def main():
+    for assert_data in ASSERT_LIST:
+        assert (
+                count_find_num(assert_data["primesL"], assert_data["limit"])
+                == assert_data["assert_result"]
+        )
+
+
+if __name__ == "__main__":
+    main()
