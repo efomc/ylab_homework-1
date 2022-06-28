@@ -1,32 +1,33 @@
-def bananas(s) -> set:
+from itertools import combinations
+
+
+def bananas(s):
     result = set()
-    word_sample = "banana"
     compared_word = s
-    len_difference = len(compared_word) - len(word_sample)
-    positions_number = 2 ** len(compared_word)
-    pattern_list = [
-        bin(item)[2:]
-        for item in range(positions_number)
-        if bin(item)[2:].count("1") == len_difference
-    ]
-    pattern_list = [
-        list("0" * (len(compared_word) - len(item)) + item)
-        for item in pattern_list
-    ]
-    for pattern in pattern_list:
-        for index in range(len(compared_word)):
-            if int(pattern[index]):
-                pattern[index] = "-"
-            else:
-                pattern[index] = compared_word[index]
-        compared_item = "".join([char for char in pattern if char != "-"])
-        if compared_item == word_sample:
-            result.add("".join(pattern))
+    word_sample = "banana"
+    for combination in combinations(
+            enumerate(compared_word), len(word_sample)
+    ):
+        combination = iter(combination)
+        worked_word = ["-" for _ in range(len(compared_word))]
+        worked_index = 0
+        while worked_index != len(word_sample):
+            try:
+                position, char = next(combination)
+                if char == word_sample[worked_index]:
+                    worked_word[position] = char
+                    worked_index += 1
+                    if worked_index == len(word_sample):
+                        result.add("".join(worked_word))
+                else:
+                    break
+            except StopIteration:
+                break
     return result
 
 
 def main():
-    string_item = input('Введите, пожалуйста, строку: ')
+    string_item = input("Введите, пожалуйста, строку: ")
     print(bananas(string_item))
 
 
