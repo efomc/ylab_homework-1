@@ -8,20 +8,14 @@ def bananas(s):
     for combination in combinations(
             enumerate(compared_word), len(word_sample)
     ):
-        combination = iter(combination)
-        worked_word = ["-" for _ in range(len(compared_word))]
-        worked_index = 0
-        while worked_index != len(word_sample):
-            try:
-                position, char = next(combination)
-                if char == word_sample[worked_index]:
-                    worked_word[position] = char
-                    worked_index += 1
-                    if worked_index == len(word_sample):
-                        result.add("".join(worked_word))
-                else:
+        worked_word = ['-' for _ in range(len(compared_word))]
+        for worked_index, (position, char) in enumerate(combination):
+            if char == word_sample[worked_index]:
+                worked_word[position] = char
+                if worked_index + 1 == len(word_sample):
+                    result.add(''.join(worked_word))
                     break
-            except StopIteration:
+            else:
                 break
     return result
 
